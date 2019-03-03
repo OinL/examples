@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>跑马灯</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="start" @click="pao">
+        <input type="button" value="stop" @click="bupao">
+        <h4>{{ msg }}</h4>
+    </div>
+    <script>
+        //注意：在VM实例中，如果想要获取data上的数据，或者想要调用methods中的方法,必须通过this.数据属性名 或 this.方法名来进行访问。this表示new出来的vm实例对象
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '1~2~3~4~5~6~7~8~9~',
+                intervalID: null  //在data上定义  定时器ID
+            },
+            methods: {
+                pao() {
+                    //为防止多开定时器，需要加个判断
+                    if (this.intervalID != null) return;
+                    //箭头函数指向的是外部的this
+                    this.intervalID = setInterval(() => {
+                        //取头第一个字符
+                        let start = this.msg.substring(0, 1)
+                        //获取后面所有的字符
+                        let end = this.msg.substring(1)
+                        //重新拼接
+                        this.msg = end + start
+                    }, 200)
+                },
+                bupao() {
+                    clearInterval(this.intervalID)
+                    //每当清除定时器之后，需要把intervalID重置
+                    this.intervalID = null;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
