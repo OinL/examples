@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>样式的使用</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="vue.js"></script>
+    <style>
+        .blue{
+            color: rgb(116, 212, 241);
+        }
+
+        .thin{
+            font-weight: 200;
+        }
+
+        .italic{
+            font-style: italic;
+        }
+
+        .active{
+            letter-spacing: 0.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1 :class="[ 'blue' , 'thin' ]">第一次测试啊啊啊啊啊啊啊啊啊啊阿啊啊啊啊啊啊啊</h1>  
+        <!-- 使用单引号包裹，直接传递一个数组 -->
+        <h1 :class="[ 'blue' , 'thin' , flag?'active':'' ]">第二次测试啊啊啊啊啊啊啊啊啊啊阿啊啊啊啊啊啊啊</h1>
+        <input type="button"  @click="chage" value="改变样式"/>
+        <!-- 在数组中使用三元表达式 -->
+        <h1 :class="['thin' , 'italic' , {'active':flag} ]" >第三次测试啊啊啊啊啊啊啊啊啊啊阿啊啊啊啊啊啊啊</h1>
+        <!-- 在数组中使用对象来代替三元表达式,变量不用''包裹 -->
+        <h1 :class="{blue:true,thin:true,italic:false,active:true}">第四次测试啊啊啊啊啊啊啊啊啊啊阿啊啊啊啊啊啊啊</h1>
+        <!-- 在为class使用v-bind绑定对象的时候，对象的属性是类名，由于对象属性可带引号也可不带引号   属性的值是一个标识符 -->
+        <h1 :class="classObj">第五次测试啊啊啊啊啊啊啊啊啊啊阿啊啊啊啊啊啊啊</h1>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+               flag: true,
+               classObj:{blue:true,thin:true,italic:false,active:true}
+            },
+            methods: {
+                chage() {
+                    this.flag = !this.flag
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
