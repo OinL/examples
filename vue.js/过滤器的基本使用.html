@@ -17,10 +17,12 @@
         <!-- Vue.filter('过滤器的名称',function(){}) -->
         <!-- 可多个传参 -->
         <p>{{ msg | msgFormat('***') | msgFormat2 }}</p>
+        <p>{{ msg | dateFormat() }}</p>
     </div>
 
     <script>
         //过滤器中的function，  第一个参数，已经被规定死了，永远是过滤器管道符前面传递过来的数据
+        // 这是全局过滤器，全部Vue实例都可以使用
         Vue.filter('msgFormat', function (msg, arg) {
             return msg.replace(/100/g, arg)
         })
@@ -32,9 +34,14 @@
             data: {
                 msg: '我去年有100块，今年有100块，明年有100块'
             },
-            methods: {
 
+            filters: { //定义私有过滤器  过滤器有两个条件   名称和处理函数
+                //过滤器调用的时候，采用的是就近原则，如果私有过滤器和全局过滤器名称一致，优先使用私有过滤器
+                dateFormat: function (msg, arg = '--') {
+                    return msg.replace(/100/g, arg)
+                }
             }
+
         })  
     </script>
 </body>
