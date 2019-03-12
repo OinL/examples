@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>修饰符的使用</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <input type="text" v-model.lazy="message">
+      <p>{{ message }}</p>
+      <!-- message 并不是实时改变的，而是在失焦或按回车时才更新 -->
+      <input type="text" v-model.number="message2">
+      <p>{{ typeof message2 }}</p>
+      <!-- 使用修饰符.number 可以将输入转换为 Number 类型，否则虽然你输入的是数字，但它的类型
+      其实是 String -->
+      <input type="text" v-model.trim="message3">
+      <p>{{ message3 }}</p>
+      <!-- 修饰符 .trim 可以自动过滤输入的首尾空格 -->
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                message:'',
+                message2:123,
+                message3:'',
+            }
+        })
+    </script>
+</body>
+</html>
