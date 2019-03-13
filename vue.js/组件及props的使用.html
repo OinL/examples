@@ -14,6 +14,7 @@
         <my-component :message="parentMessage"></my-component>
     </div>
     <script>
+        //父组件是使用 props 传递数据给子组件
         Vue.component('my-component',{
             props:['message'],
             template:'<div>{{ message }}</div>'
