@@ -55,7 +55,7 @@ Vue.component('input-number',{
             this.currentValue += 1;
         },
         handleChange:function(event){
-            var val = event.target.value.trim();
+            var val = event.target.value.trim();     //target属性用于返回最初触发事件的DOM元素   .trim去掉空格
 
             var max = this.max;
             var min = this.min;
