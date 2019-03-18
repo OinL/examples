@@ -22,6 +22,7 @@ Vue.component('tabs', {
     },
     data:function(){
         return {
+            //因为不能修改value，所以复制一份自己维护
             currentValue:this.value,
             //用于渲染tabs的标题
             navList:[]
@@ -41,8 +42,11 @@ Vue.component('tabs', {
         handleChange:function(index){
             var nav = this.navList[index];
             var name = nav.name;
+            //改变当前选中的tab，并触发下面的watch
             this.currentValue = name;
+            //更新value
             this.$emit('input',name);
+            //触发一个自定义事件，供父级使用
             this.$emit('on-click',name);
         },
         getTabs(){
