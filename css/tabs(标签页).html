@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tabs(标签页)</title>
+</head>
+<body>
+    <div class="tabs-box">
+
+        <div class="tab">
+            <input type="radio" id="radio1" name="radiogroup"/>
+            <label for="radio1">标签1</label>
+            <!-- section 文档中的区段 -->
+            <section>内容1</section>
+        </div>
+
+        <div class="tab">
+            <input type="radio" id="radio2" name="radiogroup" />
+            <label for="radio2">标签2</label>
+            <section>内容2</section>
+        </div>
+
+        <div class="tab">
+            <input type="radio" id="radio3" name="radiogroup" />
+            <label for="radio3">标签3</label>
+            <section>内容3</section>
+        </div>
+
+    </div>
+</body>
+</html>
+
+<style>
+    .tab-box{
+        /* margin 可以在一个声明中设置所有外边距属性，该属性可以有 1 到 4 个值 */
+        margin: 30px auto;
+        width: 40%;
+        height: 100px;
+        /* position属性用于指定一个元素在文档中的定位方式
+           可选的值：
+           absolute 生成绝对定位的元素，相对于static定位以外的第一个父元素进行定位
+           fixed 生成绝对定位的元素，相对于浏览器窗口进行定位
+           relative 生成相对定位的元素，相对于其正常位置进行定位
+           static 默认值，没有定位
+           inherit 从父元素继承position属性的值
+        */
+        position: relative;
+    }
+
+    .tab{
+        /* float 属性定义元素在哪个方向浮动 */
+        float: left;
+    }
+
+    input{
+        position: absolute;
+        /* 设置 div 元素的不透明级别,从 0.0 （完全透明）到 1.0（完全不透明） */
+        opacity: 0;
+    }
+
+    #radio1:checked~label,#radio2:checked~label,#radio3:checked~label{
+        background: #e67e22;
+    }
+
+    #radio1:checked~section,#radio2:checked~section,#radio3:checked~section{
+        /* z-index 属性设置元素的堆叠顺序,拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面 */
+        z-index: 1;
+    }
+
+    label{
+        padding: .5em .5em;
+        background: #2980b9;
+        color: #fff;
+        border-radius: 3px;
+    }
+
+    section{
+        width: 100%;
+        background: #ddd;
+        height: 150px;
+        position: absolute;
+        padding: 10px;
+        top:30px;
+        left: 0;
+    }
+</style>
