@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>折叠面板</title>
+</head>
+<body>
+    <div class="toggle-box">
+        <input type="checkbox" id="checkbox1" class="checkbox-common"/>
+        <label for="checkbox1" class="panel-title">面板1</label>
+        <section class="panel-content" id="content1">内容1</section>
+
+        <input type="checkbox" id="checkbox2" class="checkbox-common" />
+        <label for="checkbox2" class="panel-title">面板2</label>
+        <section class="panel-content" id="content2">内容2</section>
+
+        <input type="checkbox" id="checkbox3" class="checkbox-common" />
+        <label for="checkbox3" class="panel-title">面板3</label>
+        <section class="panel-content" id="content3">内容3</section>
+    </div>
+</body>
+</html>
+
+<style>
+.toggle-box{
+    width: 50%;
+    margin: 30px auto;
+    border:1px solid red;
+}
+.panel-title{
+    background: orange;
+    color: #fff;
+    display: block;
+    position: relative;
+    padding: .2em;
+    border-bottom: 1px solid #fff;
+}
+.checkbox-common{
+    position: absolute;
+}
+#checkbox1:checked~#content1,#checkbox2:checked~#content2,#checkbox3:checked~#content3{
+    height: 100px;
+}
+.panel-content{
+    height: 0;
+    /* transform 属性向元素应用 2D 或 3D 转换。
+    该属性允许我们对元素进行旋转、缩放、移动或倾斜。 */
+    transform: all 300ms;
+    /* overflow 属性规定当内容溢出元素框时发生的事情
+    visible 默认值。内容不会被修剪，会呈现在元素框之外。
+    hidden 内容会被修剪，并且其余内容是不可见的。
+    scroll 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。
+    auto 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。
+    inherit 规定应该从父元素继承 overflow 属性的值。
+     */
+    overflow: hidden;
+}
+</style>
