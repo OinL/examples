@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文字提示</title>
+</head>
+<body>
+    <!-- 利用html自定义属性data-attr来存储提示内容
+    通过attr(data-attr)来获得提示内容并通过hover来显示文字提示 -->
+    <p class="poem">
+        昼短<span data-tip="痛苦难熬的夜晚" class="tooltip" href="" tabindex="()">苦夜</span>长，
+        何不<span data-tip="一起夜晚游玩" class="tooltip" href="" tabindex="()">秉夜</span>游。
+    </p>
+</body>
+</html>
+
+<style>
+    .poem{
+        display: flex; /* 弹性布局 */
+        color: #3d3d3d;
+        /*
+         justify-content 用于设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式
+         flex-start 默认值。项目位于容器的开头 
+         flex-end 项目位于容器的结尾 
+         center 项目位于容器的中心 
+         space-between 项目位于各行之间留有空白的容器内 
+         space-around 项目位于各行之前、之间、之后都留有空白的容器内 
+         initial 设置该属性为它的默认值
+        */
+        justify-content: center;
+        margin-top: 150px;
+        font-size: 20px;
+    }
+    .tooltip{
+        color: #7d5fff;
+        position: relative;
+    }
+    .tooltip{
+        color: #7d5fff;
+        position: relative;
+    }
+    .tooltip:before{
+        content: attr(data-tip);
+        position: absolute;
+        left: 50%;
+        bottom:120%; /* bottom 属性规定元素的底部边缘。该属性定义了定位元素下外边距边界与其包含块下边界之间的偏移。 */
+        display: block;
+        padding: .5em;
+        width: 150px;
+        transform: translateX(-50%); /* Transform属性应用于元素的2D或3D转换。这个属性允许你将元素旋转，缩放，移动，倾斜等 */
+        background: #7d5fff;
+        color:#fff;
+        opacity: 0; /* 设置 div 元素的不透明级别 */
+        text-align: center;
+        /* 轮廓（outline）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。
+        轮廓（outline）属性指定元素轮廓的样式、颜色和宽度。 */
+        outline: none;
+    }
+    .tooltip:after{
+        content: '';
+        display: block;
+        height: 0px;
+        border: 10px solid transparent;
+        border-top-color: #7d5fff;
+        position: absolute;
+        top: -20%;
+        transform: translateX(-50%);
+        left:50%;
+        opacity: 0;
+    }
+    .tooltip:hover::before,.tooltip:focus::before,.tooltip:hover::after,.tooltip:focus::after{
+        opacity: 1;
+    }
+</style>
